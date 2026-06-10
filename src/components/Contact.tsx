@@ -1,52 +1,45 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import TextField from '@mui/material/TextField';
+import emailjs from '@emailjs/browser';
+
+const SERVICE_ID = 'service_ewlii1a';
+const TEMPLATE_ID = 'template_wmwlj0f';
+const PUBLIC_KEY = 'yz7JX2z5Nb1-dYqBl';
 
 function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [messageError, setMessageError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<boolean>(false);
-
-  const form = useRef();
-
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: React.MouseEvent) => {
     e.preventDefault();
+    const hasNameErr = name === '';
+    const hasEmailErr = email === '';
+    const hasMsgErr = message === '';
+    setNameError(hasNameErr);
+    setEmailError(hasEmailErr);
+    setMessageError(hasMsgErr);
+    if (hasNameErr || hasEmailErr || hasMsgErr) return;
 
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
+    setLoading(true);
+    setSuccess(false);
+    setFailed(false);
 
-    /* Uncomment below if you want to enable the emailJS */
-
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, { name, email, message }, PUBLIC_KEY)
+      .then(() => {
+        setSuccess(true);
+        setName('');
+        setEmail('');
+        setMessage('');
+      })
+      .catch(() => setFailed(true))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -55,58 +48,54 @@ function Contact() {
         <div className="contact_wrapper">
           <h1>Contact Me</h1>
           <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
-          <Box
-            ref={form}
-            component="form"
-            noValidate
-            autoComplete="off"
-            className='contact-form'
-          >
-            <div className='form-flex'>
-              <TextField
-                required
-                id="outlined-required"
-                label="Your Name"
-                placeholder="What's your name?"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                error={nameError}
-                helperText={nameError ? "Please enter your name" : ""}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Email / Phone"
-                placeholder="How can I reach you?"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                error={emailError}
-                helperText={emailError ? "Please enter your email or phone number" : ""}
-              />
+
+          <form className="contact-form" noValidate>
+            <div className="form-row">
+              <div className={`form-field ${nameError ? 'has-error' : ''}`}>
+                <label htmlFor="inp-name">Your name *</label>
+                <input
+                  id="inp-name"
+                  type="text"
+                  placeholder="What's your name?"
+                  value={name}
+                  onChange={(e) => { setName(e.target.value); setNameError(false); }}
+                />
+                {nameError && <span className="error-text">Please enter your name</span>}
+              </div>
+
+              <div className={`form-field ${emailError ? 'has-error' : ''}`}>
+                <label htmlFor="inp-email">Email / phone *</label>
+                <input
+                  id="inp-email"
+                  type="text"
+                  placeholder="How can I reach you?"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setEmailError(false); }}
+                />
+                {emailError && <span className="error-text">Please enter your email or phone</span>}
+              </div>
             </div>
-            <TextField
-              required
-              id="outlined-multiline-static"
-              label="Message"
-              placeholder="Send me any inquiries or questions"
-              multiline
-              rows={10}
-              className="body-form"
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-              error={messageError}
-              helperText={messageError ? "Please enter the message" : ""}
-            />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
-              Send
-            </Button>
-          </Box>
+
+            <div className={`form-field ${messageError ? 'has-error' : ''}`}>
+              <label htmlFor="inp-msg">Message *</label>
+              <textarea
+                id="inp-msg"
+                placeholder="Send me any inquiries or questions"
+                rows={10}
+                value={message}
+                onChange={(e) => { setMessage(e.target.value); setMessageError(false); }}
+              />
+              {messageError && <span className="error-text">Please enter the message</span>}
+            </div>
+
+            <div className="form-bottom">
+              {success && <span className="status-text success">✅ Message sent! I'll get back to you soon.</span>}
+              {failed && <span className="status-text failed">❌ Something went wrong. Please try again.</span>}
+              <button onClick={sendEmail} disabled={loading}>
+                {loading ? 'Sending...' : 'Send'} →
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

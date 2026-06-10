@@ -1,44 +1,43 @@
 import React from "react";
 import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faDocker, faPython } from '@fortawesome/free-brands-svg-icons';
+import { faLaravel, faReact, faPython } from '@fortawesome/free-brands-svg-icons';
 import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
-    "React",
-    "TypeScript",
+    "Laravel",
+    "React.js",
+    "Node.js",
+    "Django",
+    "PHP",
     "JavaScript",
     "HTML5",
     "CSS3",
-    "SASS",
-    "Flask",
-    "Python",
-    "SQL",
+    "MySQL",
     "PostgreSQL",
     "Postman"
 ];
 
 const labelsSecond = [
+    "AWS Lightsail",
     "Git",
-    "GitHub Actions",
-    "Docker",
-    "AWS",
-    "Azure",
+    "REST APIs",
+    "WebSockets",
+    "JWT Authentication",
+    "Swagger",
     "Linux",
-    "Snowflake",
-    "Pandas",
-    "Selenium",
+    "Server Management"
 ];
 
 const labelsThird = [
-    "OpenAI",
-    "Groq",
-    "LangChain",
-    "Qdrant",
-    "Hugging Face",
-    "LlamaIndex",
-    "Streamlit",
+    "Python",
+    "Machine Learning",
+    "Generative AI",
+    "Power BI",
+    "Pandas",
+    "SQL",
+    "Data Analytics"
 ];
 
 function Expertise() {
@@ -50,7 +49,7 @@ function Expertise() {
                 <div className="skill">
                     <FontAwesomeIcon icon={faReact} size="3x"/>
                     <h3>Full Stack Web Development</h3>
-                    <p>I have built a diverse array of web applications from scratch using modern technologies such as React and Flask. I have a strong proficiency in the SDLC process and frontend + backend development.</p>
+                    <p>Built production-grade SaaS platforms, REST APIs, and e-commerce modules using modern full-stack frameworks. Strong grasp of the complete SDLC from architecture to deployment.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsFirst.map((label, index) => (
@@ -60,9 +59,9 @@ function Expertise() {
                 </div>
 
                 <div className="skill">
-                    <FontAwesomeIcon icon={faDocker} size="3x"/>
-                    <h3>DevOps & Automation</h3>
-                    <p>Once the application is built, I help clients set up DevOps testing, CI/CD pipelines, and deployment automation to support the successful Go-Live.</p>
+                    <FontAwesomeIcon icon={faLaravel} size="3x"/>
+                    <h3>Cloud, DevOps & Deployment</h3>
+                    <p>Handled full server management and deployment on AWS Lightsail for high-availability production environments. Experienced with REST APIs, WebSockets, JWT, and Agile workflows.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsSecond.map((label, index) => (
@@ -73,8 +72,8 @@ function Expertise() {
 
                 <div className="skill">
                     <FontAwesomeIcon icon={faPython} size="3x"/>
-                    <h3>GenAI & LLM</h3>
-                    <p>Stay relevant in the market by leveraging the latest AI models in your projects. I have professional experience building enterprise grade GenAI-enabled solutions to empower intelligent decision making.</p>
+                    <h3>AI & Data Engineering</h3>
+                    <p>Built enterprise AI solutions including an AI Voice Calling System and WhatsApp CRM. Applied ML techniques and created analytics dashboards during a research internship at IIT Delhi.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsThird.map((label, index) => (
