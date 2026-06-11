@@ -10,7 +10,7 @@ function Main() {
     <div className="container">
       <div className="about-section">
         <div className="image-wrapper">
-          <img src="https://media.licdn.com/dms/image/v2/D4D03AQHB9K9UwD98Sg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1697009754769?e=1782950400&v=beta&t=Ic85jFeuPfS7_C8zV1P4yLLgkMLtcUXILTFa_yT0u9Q" alt="Avatar" />
+          <img src={`${process.env.PUBLIC_URL}/viku.jpg`} alt="Avatar" />
         </div>
         <div className="content">
           <div className="social_icons">
