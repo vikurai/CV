@@ -1,4 +1,5 @@
 import React from "react";
+import DownloadIcon from '@mui/icons-material/Download';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import '../assets/styles/Main.scss';
@@ -18,6 +19,14 @@ function Main() {
           </div>
           <h1>Vinay Kumar Rai</h1>
           <p>Full Stack Engineer</p>
+          <a
+            className="resume-button"
+            href={`${process.env.PUBLIC_URL}/Vinay_Rai_Resume.pdf`}
+            download="Vinay_Rai_Resume.pdf"
+          >
+            <DownloadIcon />
+            Download Resume
+          </a>
 
           <div className="mobile_social_icons">
             <a href="https://github.com/vikurai" target="_blank" rel="noreferrer"><GitHubIcon/></a>
