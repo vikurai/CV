@@ -10,7 +10,7 @@ function Main() {
     <div className="container">
       <div className="about-section">
         <div className="image-wrapper">
-          <img src={`${process.env.PUBLIC_URL}/viku.jpg`} alt="Avatar" />
+          <img src={`${process.env.PUBLIC_URL}/image.png`} alt="Avatar" />
         </div>
         <div className="content">
           <div className="social_icons">
