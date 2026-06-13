@@ -36,3 +36,31 @@
         color: rgb(39, 40, 34);
     }
 }
+/* ===== TIMELINE ANIMATIONS ===== */
+@keyframes timelinePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(80, 0, 202, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(80, 0, 202, 0);
+  }
+}
+
+.vertical-timeline-element-icon {
+  animation: timelinePulse 2.5s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.vertical-timeline-element-content {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease !important;
+
+  &:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 35px rgba(80, 0, 202, 0.18) !important;
+  }
+}

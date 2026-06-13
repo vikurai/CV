@@ -153,3 +153,49 @@ p, a, h1, h2, h3, h4, h5, label, button {
     }
   }
 }
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.animated-section {
+  will-change: opacity, transform;
+}
+
+.animated-section.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-section.fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-section.fade-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-section.zoom-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-section.is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animated-section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

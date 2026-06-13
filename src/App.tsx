@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Main,
   Timeline,
@@ -8,7 +8,7 @@ import {
   Navigation,
   Footer,
 } from "./components";
-import FadeIn from './components/FadeIn';
+import AnimatedSection from './components/AnimatedSection';
 import './index.scss';
 
 function App() {
@@ -24,18 +24,24 @@ function App() {
 
     useEffect(() => {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-      }, []);
+    }, []);
 
     return (
     <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
         <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
+        <Main/>
+        <AnimatedSection animation="fade-up" delay={0}>
             <Expertise/>
+        </AnimatedSection>
+        <AnimatedSection animation="fade-left" delay={0}>
             <Timeline/>
+        </AnimatedSection>
+        <AnimatedSection animation="fade-up" delay={0}>
             <Project/>
+        </AnimatedSection>
+        <AnimatedSection animation="fade-right" delay={0}>
             <Contact/>
-        </FadeIn>
+        </AnimatedSection>
         <Footer />
     </div>
     );

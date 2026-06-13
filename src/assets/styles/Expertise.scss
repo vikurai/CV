@@ -83,3 +83,45 @@
         }
     }
 }
+/* ===== EXPERTISE CARD ANIMATIONS ===== */
+@keyframes iconSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.skills-container .skills-grid .skill {
+  padding: 24px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(80, 0, 202, 0.15);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease,
+              background-color 0.35s ease;
+  cursor: default;
+
+  svg {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(80, 0, 202, 0.2);
+    border-color: rgba(80, 0, 202, 0.5);
+    background-color: rgba(80, 0, 202, 0.06);
+
+    svg {
+      transform: scale(1.2) rotate(8deg);
+      color: #5000ca !important;
+    }
+  }
+}
+
+/* Stagger chip entrance */
+.flex-chips .MuiChip-root {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 4px 12px rgba(80, 0, 202, 0.3);
+  }
+}
